@@ -21,15 +21,32 @@ const getTodo = async (req, res) => {
         message: `Todo with ID ${id} not found`,
       });
     }
-    const { name, description } = todo.toJSON();
 
-    // Only return what we want client to be aware of
-    res.json({ name, description });
+    res.json(todo);
   } catch (error) {
     // Handle all other errors
     logger.error(
-      { event: 'error', type: 'getTodo', message: error.message },
+      { event: 'error', type: 'getTodo', id, message: error.message },
       `Error retrieving todo: ${error.message}`,
+    );
+
+    res.status(500).send({
+      message: 'Internal server error',
+    });
+  }
+};
+
+const getTodos = async (_, res) => {
+  // Call appropriate service
+  try {
+    const todos = await todoService.getAllTodos();
+
+    res.json(todos);
+  } catch (error) {
+    // Handle all other errors
+    logger.error(
+      { event: 'error', type: 'getTodos', message: error.message },
+      `Error retrieving all todos: ${error.message}`,
     );
 
     res.status(500).send({
@@ -42,4 +59,4 @@ const postTodo = async (_, res) => {
   res.send('Posted a todo!');
 };
 
-module.exports = { getTodo, postTodo };
+module.exports = { getTodo, getTodos, postTodo };
