@@ -33,6 +33,7 @@ app.get('/', (_, res) => res.send('Application is live'));
 // Routes middleware
 app.use('/api', routes);
 
+// Start up server
 app.listen(config.app.port, () =>
   utils.logger.info(
     { event: 'Startup', port: `${config.app.port}` },
