@@ -4,3 +4,7 @@
     - These functions will be business logic agnostic, and reusable
     - Example: A function that converts time from milliseconds to seconds, etc
 */
+
+const logger = require('./logger');
+
+module.exports = { logger };

@@ -11,6 +11,10 @@ const helmet = require('helmet');
 const express = require('express');
 const morgan = require('morgan');
 
+const config = require('./config');
+const routes = require('./routes');
+const utils = require('./utils');
+
 const app = express();
 
 // Disable x-powered-by header for security
@@ -23,4 +27,15 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(morgan('combined'));
 
-app.listen(8080, () => console.log('Hello World!'));
+// Basic get endpoint
+app.get('/', (_, res) => res.send('Application is live'));
+
+// Routes middleware
+app.use('/api', routes);
+
+app.listen(config.app.port, () =>
+  utils.logger.info(
+    { event: 'Startup', port: `${config.app.port}` },
+    `Server running on port ${config.app.port}`,
+  ),
+);

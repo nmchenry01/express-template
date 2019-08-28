@@ -5,3 +5,14 @@
     - Each route should represent an endpoint for the API
     - Example: Routes a /todo/:id request to the todo.getTodo controller, etc
 */
+
+const express = require('express');
+
+const { todo } = require('../controllers');
+
+const router = express.Router();
+
+router.get('/todo', todo.getTodo);
+router.post('/todo', todo.postTodo);
+
+module.exports = router;
