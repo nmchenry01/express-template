@@ -4,3 +4,7 @@
     - Will likely use some sort of ORM
     - Example: Creates a TODO object/entity in our database
 */
+
+const todoModel = require('./todo');
+
+module.exports = { todoModel };
