@@ -7,7 +7,7 @@ const getTodo = async (req, res) => {
 
   // Validate parameter
   if (!id || !isNumeric(id))
-    res.status(400).send({
+    return res.status(400).send({
       message: 'The id parameter is required, and must be a numeric string',
     });
 
@@ -17,12 +17,12 @@ const getTodo = async (req, res) => {
 
     // Handle if object not found
     if (!todo) {
-      res.status(404).send({
+      return res.status(404).send({
         message: `Todo with ID ${id} not found`,
       });
     }
 
-    res.json(todo);
+    return res.json(todo);
   } catch (error) {
     // Handle all other errors
     logger.error(
@@ -30,7 +30,7 @@ const getTodo = async (req, res) => {
       `Error retrieving todo: ${error.message}`,
     );
 
-    res.status(500).send({
+    return res.status(500).send({
       message: 'Internal server error',
     });
   }
@@ -41,7 +41,7 @@ const getTodos = async (_, res) => {
   try {
     const todos = await todoService.getAllTodos();
 
-    res.json(todos);
+    return res.json(todos);
   } catch (error) {
     // Handle all other errors
     logger.error(
@@ -49,14 +49,14 @@ const getTodos = async (_, res) => {
       `Error retrieving all todos: ${error.message}`,
     );
 
-    res.status(500).send({
+    return res.status(500).send({
       message: 'Internal server error',
     });
   }
 };
 
 const postTodo = async (_, res) => {
-  res.send('Posted a todo!');
+  return res.send('Posted a todo!');
 };
 
 module.exports = { getTodo, getTodos, postTodo };

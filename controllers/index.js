@@ -5,6 +5,6 @@
     - Example: Receives a request from a route and calls the database model responsible for creating a TODO object/entity
 */
 
-const todo = require('./todoController');
+const todoController = require('./todoController');
 
-module.exports = { todo };
+module.exports = { todoController };

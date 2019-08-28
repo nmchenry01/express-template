@@ -8,12 +8,12 @@
 
 const express = require('express');
 
-const { todo } = require('../controllers');
+const { todoController } = require('../controllers');
 
 const router = express.Router();
 
-router.get('/todo/:id', todo.getTodo);
-router.get('/todo', todo.getTodos);
-router.post('/todo', todo.postTodo);
+router.get('/todo/:id', todoController.getTodo);
+router.get('/todo', todoController.getTodos);
+router.post('/todo', todoController.postTodo);
 
 module.exports = router;
