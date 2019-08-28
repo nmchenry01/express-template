@@ -12,6 +12,7 @@ const config = {
     logLevel: 'info',
   },
   postgres: {
+    // Default
     [process.env.NODE_ENV]: {
       username: 'postgres',
       password: null,

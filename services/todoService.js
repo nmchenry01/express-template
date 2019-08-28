@@ -1,13 +1,18 @@
 const models = require('../models');
 
 const createTodo = async (name, description) => {
-  // try {
-  //   // Returns a single "Todo" entity
-  //   const todo = models.Todo.findByPk(id);
-  //   return todo;
-  // } catch (error) {
-  //   throw Error(error.message);
-  // }
+  const payload = { name, description };
+
+  try {
+    // Returns the "Todo" entity that was created
+    const todo = await models.Todo.create(payload);
+
+    const { id } = todo.toJSON();
+
+    return { id };
+  } catch (error) {
+    throw Error(error.message);
+  }
 };
 
 const getTodoById = async id => {

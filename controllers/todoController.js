@@ -1,4 +1,4 @@
-const { isNumeric } = require('validator');
+const { isNumeric, isAscii } = require('validator');
 const { todoService } = require('../services');
 const { logger } = require('../utils');
 
@@ -6,13 +6,13 @@ const getTodo = async (req, res) => {
   const { id } = req.params;
 
   // Validate parameter
-  if (!id || !isNumeric(id))
+  if (!isNumeric(id))
     return res.status(400).send({
       message: 'The id parameter is required, and must be a numeric string',
     });
 
-  // Call appropriate service
   try {
+    // Call appropriate service
     const todo = await todoService.getTodoById(id);
 
     // Handle if object not found
@@ -37,8 +37,8 @@ const getTodo = async (req, res) => {
 };
 
 const getTodos = async (_, res) => {
-  // Call appropriate service
   try {
+    // Call appropriate service
     const todos = await todoService.getAllTodos();
 
     return res.json(todos);
@@ -55,8 +55,33 @@ const getTodos = async (_, res) => {
   }
 };
 
-const postTodo = async (_, res) => {
-  return res.send('Posted a todo!');
+const postTodo = async (req, res) => {
+  const { name, description } = req.body;
+
+  // Validate parameter
+  if (!isAscii(name) || !isAscii(description))
+    return res.status(400).send({
+      message:
+        'The body parameters "name" and "description" are required to be strings',
+    });
+
+  try {
+    // Call appropriate service
+    const id = await todoService.createTodo(name, description);
+
+    // Only return the id of the created object
+    return res.json(id);
+  } catch (error) {
+    // Handle all other errors
+    logger.error(
+      { event: 'error', type: 'getTodo', message: error.message },
+      `Error creating todo: ${error.message}`,
+    );
+
+    return res.status(500).send({
+      message: 'Internal server error',
+    });
+  }
 };
 
 module.exports = { getTodo, getTodos, postTodo };
