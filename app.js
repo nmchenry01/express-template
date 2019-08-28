@@ -13,7 +13,7 @@ const morgan = require('morgan');
 
 const config = require('./config');
 const routes = require('./routes');
-const utils = require('./utils');
+const { logger } = require('./utils');
 
 const app = express();
 
@@ -35,7 +35,7 @@ app.use('/api', routes);
 
 // Start up server
 app.listen(config.app.port, () =>
-  utils.logger.info(
+  logger.info(
     { event: 'Startup', port: `${config.app.port}` },
     `Server running on port ${config.app.port}`,
   ),

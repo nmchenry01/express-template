@@ -5,3 +5,7 @@
     - Example: A function or class that makes calls to create a TODO object in a Postgres database
     - Example: A function or class that makes calls to the twitter API
 */
+
+const todoService = require('./todoService');
+
+module.exports = { todoService };

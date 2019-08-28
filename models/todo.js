@@ -1,17 +1,13 @@
-const sequelize = require('sequelize');
-
-const todoModel = db => {
-  const todo = db.define('todo', {
+module.exports = (sequelize, DataTypes) => {
+  const Todo = sequelize.define('Todo', {
     id: {
-      type: sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    name: { type: sequelize.STRING, allowNull: false },
-    description: { type: sequelize.TEXT, allowNull: false },
+    name: { type: DataTypes.STRING, allowNull: false },
+    description: { type: DataTypes.TEXT, allowNull: false },
   });
 
-  return todo;
+  return Todo;
 };
-
-module.exports = todoModel;

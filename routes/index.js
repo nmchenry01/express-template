@@ -12,7 +12,7 @@ const { todo } = require('../controllers');
 
 const router = express.Router();
 
-router.get('/todo', todo.getTodo);
+router.get('/todo/:id', todo.getTodo);
 router.post('/todo', todo.postTodo);
 
 module.exports = router;
