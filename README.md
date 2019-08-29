@@ -6,6 +6,8 @@ The purpose of this repository is to provide an example outline for a Node.js, E
 
 The basic "Todo" API implemented is very contrived, but the idea is that the structuring of this API and configuration could be extended to an actual use case.
 
+Additionally, no tests have been included in this repo for brevities sake, though if they were I'd use the Jest library and include a /tests folder.
+
 ## Repository Structure
 
 In the Express ecosystem, there are a huge variety of ways to structure a REST API. The pattern in this repo is derived from a couple standards, including drawing inspiration from MVC. Below is the outline of a simple, yet extensible way for us to structure an API:
