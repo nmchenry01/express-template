@@ -2,6 +2,7 @@
   Purpose:
     - This is where we will define models to interact with data in our database
     - Will likely use some sort of ORM
+    - The index.js file initializes the connection object then decorates with our models
     - Example: Creates a TODO object/entity in our database
 */
 
