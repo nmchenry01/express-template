@@ -2,7 +2,7 @@
 
 ## Overview
 
-The purpose of this repository is to provide an example outline for a Node.js, Express-based API to be run in a Docker container. It includes a suggested repository structure, linting configurations, startup scripts, etc.
+The purpose of this repository is to provide an example outline for a Node.js, Express-based API to be run in a Docker container. It includes a suggested repository structure, linting configurations, a local test Postgres instance to be run on a Docker container, startup scripts, etc.
 
 ## Repository Structure
 
@@ -80,10 +80,62 @@ In order for the server to access the database, we'll also need to start up our 
 
 You should now be able to hit endpoints on the API and receive responses.
 
-#### Linting/Formatting
+### Linting/Formatting
 
 Since JavaScript is an interpreted, dynamically-typed language linting and formatting standards are super important. There are two scripts included in the `package.json` file to help with this. The two commands are `npm run lint` and `npm run format`. For this template, we are using the Airbnb JavaScript style guide, which is fairly strict and opinionated.
 
 If you have VS-Code, I recommended you download the ESLint and Prettier extensions and configure them in user settings. They will allow you to lint and format as you write your code, rather than having to use the above scripts.
 
 NOTE: Before any code is checked in to source control, always make sure to run the above two commands to ensure consistency and style. Javascript is a lawless wasteland otherwise.
+
+## Libraries
+
+Below is a quick overview of the notable libraries and middlewares used in this Repo. Express has a bunch, and we can pick and choose as well as integrate them super easily. I know security was a concern raised, but if we offload most of that to API Gateway we should be good to go and not need to include an authentication middleware in our application code.
+
+### Body-Parser
+
+An Express middleware used to parse incoming request bodies to make them nice and friendly for your handlers. https://www.npmjs.com/package/body-parser.
+
+### Bunyan
+
+An application logging library, easy to configure and a great alternative to spamming console.log. https://www.npmjs.com/package/bunyan.
+
+### CORS
+
+An Express middleware used to enable CORS. Not sure if we'll need this one or not. https://www.npmjs.com/package/cors.
+
+### Express
+
+A popular Node.js server framework. https://www.npmjs.com/package/express.
+
+### Helmet
+
+An Express middleware used for security, mostly around setting HTTP headers. May not be necessary with API Gateway. https://www.npmjs.com/package/helmet.
+
+### Lodash
+
+General utility, basically the swiss army knife of NPM. https://www.npmjs.com/package/lodash.
+
+### Validator
+
+A utility we can use to validate and sanitize client requests, params, query strings, etc. https://www.npmjs.com/package/validator.
+
+### ESLint
+
+A JavaScript linter that's been adopted as the defacto standard. Highly configurable. https://www.npmjs.com/package/eslint.
+
+### Prettier
+
+A JavaScript formatter that's also a standard. Also highly configurable. https://www.npmjs.com/package/prettier.
+
+### Nodemon
+
+Helps with locally development, automatically restarts your server when you change application code. https://www.npmjs.com/package/nodemon.
+
+### Sequelize
+
+The ORM we should use if we're working with a relational datastore. Supports MySQL, Postgres, MariaDB, SQL Server etc. https://www.npmjs.com/package/sequelize.
+
+### PG
+
+A Postgres driver/client for Node.js, needed with Sequelize I believe. https://www.npmjs.com/package/pg.
