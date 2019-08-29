@@ -4,6 +4,8 @@
 
 The purpose of this repository is to provide an example outline for a Node.js, Express-based API to be run in a Docker container. It includes a suggested repository structure, linting configurations, a local test Postgres instance to be run on a Docker container, startup scripts, etc.
 
+The basic "Todo" API implemented is very contrived, but the idea is that the structuring of this API and configuration could be extended to an actual use case.
+
 ## Repository Structure
 
 In the Express ecosystem, there are a huge variety of ways to structure a REST API. The pattern in this repo is derived from a couple standards, including drawing inspiration from MVC. Below is the outline of a simple, yet extensible way for us to structure an API:
