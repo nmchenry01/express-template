@@ -6,8 +6,8 @@
   "scripts": {
     "lint": "eslint '**/*.js'",
     "format": "prettier --write '**/*.js'",
-    "dev": "nodemon app.js",
-    "start": "NODE_ENV=production node ./app.js"
+    "dev": "nodemon src/app.js",
+    "start": "NODE_ENV=production node src/app.js"
   },
   "author": "",
   "license": "ISC",
