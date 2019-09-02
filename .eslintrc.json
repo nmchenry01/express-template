@@ -1,5 +1,5 @@
 {
   "plugins": ["prettier", "jest"],
   "extends": ["airbnb-base", "prettier", "plugin:jest/recommended"],
-  "env": { "node": true, "es6": true, "jest/globals": true },
+  "env": { "node": true, "es6": true, "jest/globals": true }
 }
